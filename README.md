@@ -29,7 +29,7 @@ Benefits:
 This project is a great starting point for anyone looking to integrate a user-friendly and efficient image upload solution into their React application.
 
 
-Available here: [Eggcellent - Vítor F. Nery](https://eggcellent-vitorfnery.netlify.app/)
+Available here: [Multiple Files Uploader - Vítor F. Nery](https://file-uploader-dropzone-vitorfnery.netlify.app/)
 
 ## 🛠️ Technologies 
 
