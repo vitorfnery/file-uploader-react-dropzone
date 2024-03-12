@@ -16,7 +16,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>File Uploader</h1>
+      <h1>Multiple File Uploader</h1>
       <FileUploader onSubmit={handleSubmit} accept={acceptFiles} />
     </div>
   );
