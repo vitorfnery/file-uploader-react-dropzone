@@ -1,4 +1,3 @@
-// App.tsx
 import React from "react";
 import { IAccept, FileUploader } from "./components/FileUploader";
 
