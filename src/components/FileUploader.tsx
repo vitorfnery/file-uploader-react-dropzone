@@ -2,13 +2,13 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 
-export interface IAcceptKey {
+export interface IAccept {
   [key: string]: string[];
 }
 
-interface ImageUploaderProps {
-  onSubmit: (images: File[]) => void;
-  acceptKey: IAcceptKey;
+interface FileUploaderProps {
+  onSubmit: (Files: File[]) => void;
+  accept: IAccept;
 }
 
 interface ContainerProps {
@@ -116,23 +116,23 @@ const RemoveBtn = styled.button`
   }
 `;
 
-export const ImageUploader: React.FC<ImageUploaderProps> = ({
+export const FileUploader: React.FC<FileUploaderProps> = ({
   onSubmit,
-  acceptKey,
+  accept,
 }) => {
   const [files, setFiles] = useState<File[]>([]);
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
   }, []);
-  const removeImage = (index: number) => {
+  const removeFile = (index: number) => {
     setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
     useDropzone({
       onDrop,
-      accept: acceptKey,
+      accept: accept,
     });
-  const submitImages = () => {
+  const submitFiles = () => {
     onSubmit(files);
   };
 
@@ -159,12 +159,12 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
               alt="Preview"
               style={{ width: "100px", height: "100px" }}
             />
-            <RemoveBtn onClick={() => removeImage(index)}>X</RemoveBtn>
+            <RemoveBtn onClick={() => removeFile(index)}>X</RemoveBtn>
           </PreviewCard>
         ))}
       </PreviewSection>
       <SubmitSection>
-        <SubmitBtn onClick={submitImages}>Submit</SubmitBtn>
+        <SubmitBtn onClick={submitFiles}>Submit</SubmitBtn>
       </SubmitSection>
     </div>
   );

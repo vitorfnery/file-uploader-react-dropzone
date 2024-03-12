@@ -1,6 +1,6 @@
 // App.tsx
 import React from "react";
-import { IAcceptKey, ImageUploader } from "./components/ImageUploader";
+import { IAccept, FileUploader } from "./components/FileUploader";
 
 const App: React.FC = () => {
   const handleSubmit = (images: File[]) => {
@@ -8,14 +8,16 @@ const App: React.FC = () => {
     console.log(images);
   };
 
-  const acceptFiles: IAcceptKey = {
-    "image/jpg": [".jpg", ".jpeg", ".png", ".svg"],
+  const acceptFiles: IAccept = {
+    "image/jpeg": [".jpeg", ".jpg"],
+    "image/png": [".png"],
+    "image/svg+xml": [".svg"],
   };
 
   return (
     <div>
       <h1>Image Uploader</h1>
-      <ImageUploader onSubmit={handleSubmit} acceptKey={acceptFiles} />
+      <FileUploader onSubmit={handleSubmit} accept={acceptFiles} />
     </div>
   );
 };
