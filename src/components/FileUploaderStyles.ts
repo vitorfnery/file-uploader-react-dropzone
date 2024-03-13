@@ -64,6 +64,14 @@ export const PreviewImg = styled.img`
   position: absolute;
   z-index: 1;
 `;
+
+export const PreviewText = styled.p`
+  position: "absolute";
+  z-index: 1;
+  top: 30;
+  text-align: "center";
+`;
+
 export const SubmitSection = styled.div`
   display: flex;
   align-items: center;

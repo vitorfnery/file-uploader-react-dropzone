@@ -10,6 +10,7 @@ import {
   SubmitSection,
   SubmitBtn,
   RemoveBtn,
+  PreviewText,
 } from "./FileUploaderStyles";
 
 export interface IAccept {
@@ -57,16 +58,24 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
         </DropContent>
       </Container>
       <PreviewSection>
-        {files.map((file, index) => (
-          <PreviewCard key={index}>
-            <PreviewImg
-              src={URL.createObjectURL(file)}
-              alt="Preview"
-              style={{ width: "100px", height: "100px" }}
-            />
-            <RemoveBtn onClick={() => removeFile(index)}>X</RemoveBtn>
-          </PreviewCard>
-        ))}
+        {files.map((file, index) => {
+          const isImage = file.type.startsWith("image/");
+          return (
+            <PreviewCard key={index}>
+              {isImage ? (
+                <>
+                  <PreviewImg src={URL.createObjectURL(file)} alt="Preview" />
+                  <RemoveBtn onClick={() => removeFile(index)}>X</RemoveBtn>
+                </>
+              ) : (
+                <div>
+                  <PreviewText>{file.name}</PreviewText>
+                  <RemoveBtn onClick={() => removeFile(index)}>X</RemoveBtn>
+                </div>
+              )}
+            </PreviewCard>
+          );
+        })}
       </PreviewSection>
       <SubmitSection>
         <SubmitBtn onClick={submitFiles}>Submit</SubmitBtn>
